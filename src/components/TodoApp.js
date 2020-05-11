@@ -1,5 +1,6 @@
 import React from 'react';
 import TodoItem from './TodoItem';
+import TodoFooter from './TodoFooter';
 import {state,sequences} from 'cerebral';
 import { connect } from '@cerebral/react';
 
@@ -8,12 +9,16 @@ const TodoApp = connect({
 		currentTodos: state`currentTodos`,
 		addTodo: sequences`addTodo`,
 		changeNewTodoTitle: sequences`changeNewTodoTitle`,
+		toggleAllTodos: sequences`toggleAllTodos`,
+		isAllTodosChecked: state`isAllTodosChecked`,
 },
 	({
 		 newTodoTitle,
 		 currentTodos,
 		 addTodo,
-		 changeNewTodoTitle
+		 changeNewTodoTitle,
+		 toggleAllTodos,
+		 isAllTodosChecked
 }) => {
 	return (
 					<div>
@@ -38,6 +43,8 @@ const TodoApp = connect({
 									id="toggle-all"
 									className="toggle-all"
 									type="checkbox"
+									onChange={() => toggleAllTodos()}
+									checked={isAllTodosChecked}
 									/>
 								<label
 									htmlFor="toggle-all"
@@ -49,6 +56,7 @@ const TodoApp = connect({
 								</ul>
 							</section>
 						</form>
+						<TodoFooter/>
 					</div>
 	)
 	}

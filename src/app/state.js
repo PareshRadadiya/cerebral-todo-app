@@ -15,5 +15,19 @@ export default {
           return true;
       }
     });
+  },
+  isAllTodosChecked: get => {
+    const currentTodos = get(state`currentTodos`);
+
+    return Boolean(currentTodos.length &&
+        Object.values(currentTodos).every(todo => todo.completed)
+    );
+  },
+  leftItemsCount: get => {
+    const activeTodos= Object.values(get(state`todos`)).filter(todo=>{
+          return !todo.completed;
+    });
+
+    return activeTodos.length;
   }
 }

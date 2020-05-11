@@ -3,9 +3,13 @@ import { state, props, sequences } from "cerebral";
 import { connect } from '@cerebral/react';
 
 const TodoItem = connect({
-	todo: state`todos.${props`id`}`,
+		todo: state`todos.${props`id`}`,
+		toggleTodoCompleted: sequences`toggleTodoCompleted`,
 },
-	({ todo }) => {
+	({
+		 todo,
+		 toggleTodoCompleted,
+	 }) => {
 		return (
 						<li className={(
 							               todo.completed ? ' completed ' : ''
@@ -14,6 +18,7 @@ const TodoItem = connect({
 								<input
 									className="toggle"
 									type="checkbox"
+									onChange={() => toggleTodoCompleted({id:todo.id})}
 									checked={todo.completed}
 								/>
 								<label>

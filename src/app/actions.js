@@ -14,3 +14,12 @@ export const createTodo = ({store, get}) => {
     completed:false
   });
 };
+
+export const toggleAllTodos = ({store,get}) => {
+  const isAllChecked = get(state`isAllTodosChecked`);
+  const todos = get(state`currentTodos`);
+
+  for(let i = 0;i<todos.length;i++){
+    store.set(`todos.${todos[i].id}.completed`,!isAllChecked);
+  }
+};
