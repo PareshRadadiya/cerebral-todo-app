@@ -5,10 +5,12 @@ import { connect } from '@cerebral/react';
 const TodoItem = connect({
 		todo: state`todos.${props`id`}`,
 		toggleTodoCompleted: sequences`toggleTodoCompleted`,
+		removeTodoItem: sequences`removeTodoItem`
 },
 	({
 		 todo,
 		 toggleTodoCompleted,
+		 removeTodoItem
 	 }) => {
 		return (
 						<li className={(
@@ -24,6 +26,7 @@ const TodoItem = connect({
 								<label>
 									{todo.title}
 								</label>
+								<button type="button" className="destroy" onClick={() => removeTodoItem({id:todo.id})}/>
 							</div>
 						</li>
 		);

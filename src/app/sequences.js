@@ -17,3 +17,5 @@ export const toggleTodoCompleted = toggle(state`todos.${props`id`}.completed`);
 export const toggleAllTodos = actions.toggleAllTodos;
 
 export const changeFilter = set(state`filter`, props`filter`);
+
+export const removeTodoItem = unset(state`todos.${props`id`}`);
